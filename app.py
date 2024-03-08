@@ -26,19 +26,26 @@ def submit_domain():
 
     return f'''
     <h1>Showing favicons for: {domain}</h1>
-    <div>
-        <img src="{favicon_url_16}" alt="Favicon 16x16">
-        <p>16x16</p>
-        <a href="{favicon_url_16}" download>Download 16x16</a>
-    </div>
-    <div>
-        <img src="{favicon_url_64}" alt="Favicon 64x64">
-        <p>64x64</p>
-        <a href="{favicon_url_64}" download>Download 64x64</a>
-    </div>
-    <div>
-        <img src="{favicon_url_256}" alt="Favicon 256x256">
-        <p>256x256</p>
-        <a href="{favicon_url_256}" download>Download 256x256</a>
-    </div>
+    <table style="border-collapse: collapse; width: 100%;">
+        <tr>
+            <th style="border: 1px solid black; padding: 10px; text-align: center;">Icon</th>
+            <th style="border: 1px solid black; padding: 10px; text-align: center;">Size</th>
+            <th style="border: 1px solid black; padding: 10px; text-align: center;">Download</th>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: center;"><img src="{favicon_url_16}" alt="Favicon 16x16"></td>
+            <td style="border: 1px solid black; padding: 10px; text-align: center;">Small: 16x16</td>
+            <td style="border: 1px solid black; padding: 10px; text-align: center;"><a href="{favicon_url_16}" download>Download 16x16</a></td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: center;"><img src="{favicon_url_64}" alt="Favicon 64x64"></td>
+            <td style="border: 1px solid black; padding: 10px; text-align: center;">Medium: 64x64</td>
+            <td style="border: 1px solid black; padding: 10px; text-align: center;"><a href="{favicon_url_64}" download>Download 64x64</a></td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px; text-align: center;"><img src="{favicon_url_256}" alt="Favicon 256x256"></td>
+            <td style="border: 1px solid black; padding: 10px; text-align: center;">Large: 256x256</td>
+            <td style="border: 1px solid black; padding: 10px; text-align: center;"><a href="{favicon_url_256}" download>Download 256x256</a></td>
+        </tr>
+    </table>
     '''
