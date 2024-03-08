@@ -1,6 +1,9 @@
 # save this as app.py, use . fl_venv/bin/activate to run
 from flask import Flask, request, render_template_string, redirect, url_for
 import validators
+from colorthief import ColorThief
+import os
+import urllib.request
 
 app = Flask(__name__)
 
@@ -17,6 +20,8 @@ def home():
 def submit_domain():
     domain = request.form.get('domain')
 
+    FILENAME = 'favicon.png'
+
     if not validators.domain(domain):
         return "Invalid domain. Please enter a valid domain."
 
@@ -24,8 +29,19 @@ def submit_domain():
     favicon_url_64 = f"http://www.google.com/s2/favicons?sz=64&domain_url={domain}"
     favicon_url_256 = f"http://www.google.com/s2/favicons?sz=256&domain_url={domain}"
 
+    # Download the image
+    urllib.request.urlretrieve(favicon_url_256, FILENAME)
+
+    color_thief = ColorThief(FILENAME)
+    dominant_color = color_thief.get_color(quality=1)
+
+    # Delete the image
+    os.remove(FILENAME)
+
     return f'''
     <h1>Showing favicons for: {domain}</h1>
+    <h2>Dominant Colour RGB: {dominant_color}</h2>
+    <div style="width: 50px; height: 50px; background-color: rgb{dominant_color};"></div>
     <table style="border-collapse: collapse; width: 100%;">
         <tr>
             <th style="border: 1px solid black; padding: 10px; text-align: center;">Icon</th>
